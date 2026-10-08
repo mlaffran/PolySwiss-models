@@ -27,11 +27,23 @@
      Non succede nulla? Installa prima PolySwiss dall'invito TestFlight, poi tocca di nuovo il pulsante.</p>
 </main>
 <script>
-  // The account and password are in the part after '#': browsers never send it to the server.
-  var hash = location.hash;
-  var u = new URLSearchParams(hash.slice(1)).get('u');
-  if (u) document.getElementById('account').textContent = u;
-  document.getElementById('open').href = 'com.polyswiss.app://matrix-login' + hash;
+  // The account and password are in the part after '#': browsers never send it to the server. Mail and chat apps
+  // sometimes %-code a link a second time (%40 -> %2540), so values are decoded until no %-code is left, and the app
+  // gets a clean link.
+  function decodeFully(v) {
+    for (var i = 0; i < 3 && /%[0-9a-f]{2}/i.test(v); i++) {
+      try { v = decodeURIComponent(v); } catch (e) { break; }
+    }
+    return v;
+  }
+  var params = {};
+  location.hash.slice(1).split('&').forEach(function (part) {
+    var eq = part.indexOf('=');
+    if (eq > 0) params[part.slice(0, eq)] = decodeFully(part.slice(eq + 1));
+  });
+  if (params.u) document.getElementById('account').textContent = params.u;
+  document.getElementById('open').href = 'com.polyswiss.app://matrix-login#u=' + encodeURIComponent(params.u || '') +
+    '&p=' + encodeURIComponent(params.p || '');
 </script>
 </body>
 </html>
