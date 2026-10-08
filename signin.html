@@ -21,6 +21,7 @@
   <h1>PolySwiss</h1>
   <p>Test account · Account di prova</p>
   <div class="account" id="account">—</div>
+  <p id="check"></p>
   <a class="button" id="open" href="#">Open in PolySwiss · Apri in PolySwiss</a>
   <p>PolySwiss asks you to confirm, then signs you in.<br>PolySwiss chiede conferma, poi accede.</p>
   <p>Nothing happens? Install PolySwiss from the TestFlight invitation first, then tap the button again.<br>
@@ -42,6 +43,13 @@
     if (eq > 0) params[part.slice(0, eq)] = decodeFully(part.slice(eq + 1));
   });
   if (params.u) document.getElementById('account').textContent = params.u;
+  // A 4-character check of the password (the developer's script prints the same): equal = the link arrived intact.
+  if (params.p && window.crypto && crypto.subtle) {
+    crypto.subtle.digest('SHA-256', new TextEncoder().encode(params.p)).then(function (b) {
+      var hex = Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
+      document.getElementById('check').textContent = 'Check ' + hex.slice(0, 4).toUpperCase() + ' · ' + params.p.length + ' characters';
+    });
+  }
   document.getElementById('open').href = 'com.polyswiss.app://matrix-login#u=' + encodeURIComponent(params.u || '') +
     '&p=' + encodeURIComponent(params.p || '');
 </script>
