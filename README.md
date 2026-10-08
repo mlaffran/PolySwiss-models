@@ -22,3 +22,7 @@ SHA-256; the app checks every download against them.
 
 `packages.json` is the catalog the app shows in Settings → About PolySwiss: each package's id, name and download size.
 The app asks before every download.
+
+`signin.html` (GitHub Pages) opens PolySwiss with a test account: the account and password come after `#` in the
+link, so they are never sent to the server. The links are made on the developer's Mac; the secret they come from
+is not in this repository.

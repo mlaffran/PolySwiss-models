@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>PolySwiss sign-in</title>
+<style>
+  :root { color-scheme: light dark; --bg: #E6F4FE; --fg: #111827; --muted: #4B5563; --button: #2563EB; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0B1220; --fg: #F3F4F6; --muted: #9CA3AF; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.45 -apple-system, system-ui, sans-serif; }
+  main { max-width: 420px; margin: 0 auto; padding: 48px 16px; text-align: center; }
+  h1 { font-size: 26px; margin: 0 0 8px; }
+  .account { font-weight: 600; word-break: break-all; margin: 16px 0 28px; }
+  a.button { display: block; background: var(--button); color: #fff; text-decoration: none; padding: 16px; border-radius: 14px; font-size: 19px; font-weight: 600; }
+  p { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>PolySwiss</h1>
+  <p>Test account · Account di prova</p>
+  <div class="account" id="account">—</div>
+  <a class="button" id="open" href="#">Open in PolySwiss · Apri in PolySwiss</a>
+  <p>PolySwiss asks you to confirm, then signs you in.<br>PolySwiss chiede conferma, poi accede.</p>
+  <p>Nothing happens? Install PolySwiss from the TestFlight invitation first, then tap the button again.<br>
+     Non succede nulla? Installa prima PolySwiss dall'invito TestFlight, poi tocca di nuovo il pulsante.</p>
+</main>
+<script>
+  // The account and password are in the part after '#': browsers never send it to the server.
+  var hash = location.hash;
+  var u = new URLSearchParams(hash.slice(1)).get('u');
+  if (u) document.getElementById('account').textContent = u;
+  document.getElementById('open').href = 'com.polyswiss.app://matrix-login' + hash;
+</script>
+</body>
+</html>
