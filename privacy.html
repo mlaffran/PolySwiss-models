@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PolySwiss privacy</title>
+<style>
+  :root { color-scheme: light dark; --bg: #FFFFFF; --fg: #111827; --muted: #4B5563; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0B1220; --fg: #F3F4F6; --muted: #9CA3AF; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 -apple-system, system-ui, sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 28px 0 6px; }
+  p, li { color: var(--fg); }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>PolySwiss — privacy</h1>
+  <p class="muted">Test version (TestFlight). Last updated 10 October 2026.</p>
+
+  <h2>Who</h2>
+  <p>PolySwiss is developed by Marco Laffranchi, Switzerland. Contact: the feedback function in the app (Settings → Feedback to PolySwiss, with a pseudonym so that we can answer).</p>
+
+  <h2>What stays on your phone</h2>
+  <ul>
+    <li>Your identities (names, photos, languages, age band), your settings, the words learned from your own writing (only if you switch learning on), your PS-Address list and chats kept on the phone. They are stored in an encrypted file; the key is in the phone's keychain.</li>
+    <li>Word suggestions, the translator and dictation run on the phone. What you type or say is not sent anywhere for them.</li>
+    <li>Language packages (word-suggestion models, dictionaries, dictation models) are downloaded from GitHub and stored on the phone. Downloading them sends nothing about you beyond what any download does (your IP address reaches GitHub).</li>
+  </ul>
+
+  <h2>What leaves your phone</h2>
+  <ul>
+    <li><strong>Messages to other people</strong> go through the Matrix server matrix.org with the Matrix account you sign in with. <strong>They are not end-to-end encrypted yet</strong>: do not write anything secret. matrix.org's own privacy policy applies to them.</li>
+    <li><strong>Feedback</strong> you send to PolySwiss: anonymous, or with a pseudonym (a random key of this phone) so that we can answer. It is encrypted so that only PolySwiss can read it. Everything sent is listed in the app under "Data sent to PolySwiss".</li>
+    <li><strong>Once a day, anonymous app parameters</strong>: the operating system and its version, the app language, the installed language packages and how many identities are signed in. No names, accounts, texts or device model. Also listed under "Data sent to PolySwiss".</li>
+  </ul>
+  <p>PolySwiss has no advertising, no tracking and no analytics service, and sells no data.</p>
+
+  <h2>Deleting your data</h2>
+  <p>"Quit PolySwiss — Ask to be forgotten" (Settings → Subscriptions) signs every identity out and deletes your data from the phone. Deleting the app deletes it too. To have feedback you sent deleted, ask through the feedback function (with a pseudonym).</p>
+
+  <h2>Licences of the content used</h2>
+  <p class="muted">Dictionaries: Wiktionary via kaikki.org, CC BY-SA 4.0. Word models: Goldfish, SmolLM2 (Apache-2.0). Dictation: Vosk. Test sentences: Tatoeba, CC BY 2.0 FR.</p>
+</main>
+</body>
+</html>
