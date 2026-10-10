@@ -12,6 +12,8 @@
   main { max-width: 420px; margin: 0 auto; padding: 48px 16px; text-align: center; }
   h1 { font-size: 26px; margin: 0 0 8px; }
   .account { font-weight: 600; word-break: break-all; margin: 16px 0 28px; }
+  .account div { margin: 6px 0; }
+  .account small { font-weight: 400; color: var(--muted); }
   a.button { display: block; background: var(--button); color: #fff; text-decoration: none; padding: 16px; border-radius: 14px; font-size: 19px; font-weight: 600; }
   p { color: var(--muted); }
 </style>
@@ -42,16 +44,35 @@
     var eq = part.indexOf('=');
     if (eq > 0) params[part.slice(0, eq)] = decodeFully(part.slice(eq + 1));
   });
-  if (params.u) document.getElementById('account').textContent = params.u;
-  // A 4-character check of the password (the developer's script prints the same): equal = the link arrived intact.
-  if (params.p && window.crypto && crypto.subtle) {
-    crypto.subtle.digest('SHA-256', new TextEncoder().encode(params.p)).then(function (b) {
+  // A 4-character check of a password (the developer's script prints the same): equal = the link arrived intact.
+  function check(pw, show) {
+    if (!pw || !window.crypto || !crypto.subtle) return;
+    crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw)).then(function (b) {
       var hex = Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
-      document.getElementById('check').textContent = 'Check ' + hex.slice(0, 4).toUpperCase() + ' · ' + params.p.length + ' characters';
+      show('Check ' + hex.slice(0, 4).toUpperCase() + ' · ' + pw.length + ' characters');
     });
   }
-  document.getElementById('open').href = 'com.polyswiss.app://matrix-login#u=' + encodeURIComponent(params.u || '') +
-    '&p=' + encodeURIComponent(params.p || '');
+  // One account (u, p) for the identity in use, or one per identity (u1, p1 … u5, p5).
+  var slots = [1, 2, 3, 4, 5].filter(function (n) { return params['u' + n] && params['p' + n]; });
+  var account = document.getElementById('account');
+  var pairs = [];
+  if (slots.length) {
+    account.textContent = '';
+    slots.forEach(function (n) {
+      var row = document.createElement('div');
+      row.textContent = 'Identity ' + n + ': ' + params['u' + n] + ' ';
+      var small = document.createElement('small');
+      row.appendChild(small);
+      account.appendChild(row);
+      check(params['p' + n], function (t) { small.textContent = '(' + t + ')'; });
+      pairs.push('u' + n + '=' + encodeURIComponent(params['u' + n]), 'p' + n + '=' + encodeURIComponent(params['p' + n]));
+    });
+  } else {
+    if (params.u) account.textContent = params.u;
+    check(params.p, function (t) { document.getElementById('check').textContent = t; });
+    pairs.push('u=' + encodeURIComponent(params.u || ''), 'p=' + encodeURIComponent(params.p || ''));
+  }
+  document.getElementById('open').href = 'com.polyswiss.app://matrix-login#' + pairs.join('&');
 </script>
 </body>
 </html>
