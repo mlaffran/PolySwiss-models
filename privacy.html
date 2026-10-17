@@ -18,21 +18,21 @@
 <body>
 <main>
   <h1>PolySwiss — privacy</h1>
-  <p class="muted">Test version (TestFlight). Last updated 10 October 2026.</p>
+  <p class="muted">Test version (TestFlight). Last updated 18 October 2026.</p>
 
   <h2>Who</h2>
   <p>PolySwiss is developed by Marco Laffranchi, Switzerland. Contact: the feedback function in the app (Settings → Feedback to PolySwiss, with a pseudonym so that we can answer).</p>
 
   <h2>What stays on your phone</h2>
   <ul>
-    <li>Your identities (names, photos, languages, age band), your settings, the words learned from your own writing (only if you switch learning on), your PS-Address list and chats kept on the phone. They are stored in an encrypted file; the key is in the phone's keychain.</li>
+    <li>Your identities (names, photos, languages, age band), your settings, the words learned from your own writing (only if you switch learning on), your PS-Address list and chats kept on the phone. They are stored in an encrypted file (AES-256-GCM); the key is in the phone's keychain.</li>
     <li>Word suggestions, the translator and dictation run on the phone. What you type or say is not sent anywhere for them.</li>
     <li>Language packages (word-suggestion models, dictionaries, dictation models) are downloaded from GitHub and stored on the phone. Downloading them sends nothing about you beyond what any download does (your IP address reaches GitHub).</li>
   </ul>
 
   <h2>What leaves your phone</h2>
   <ul>
-    <li><strong>Messages to other people</strong> go through the Matrix server matrix.org with the Matrix account you sign in with. <strong>They are not end-to-end encrypted yet</strong>: do not write anything secret. matrix.org's own privacy policy applies to them.</li>
+    <li><strong>Messages to other people</strong> go through the PolySwiss server (matrix.polyswiss.app) with the Matrix account of your identity. Texts, files and the set-up of calls are <strong>end-to-end encrypted</strong> (AES-256-GCM) with a key that only your two phones can compute, made when you connected with the QR code (PS-Address). The server forwards them but cannot read them; it does see which accounts write to each other and when. PolySwiss does not send a message to someone you are not connected with. Calls are encrypted with the WebRTC standard (DTLS-SRTP).</li>
     <li><strong>Feedback</strong> you send to PolySwiss: anonymous, or with a pseudonym (a random key of this phone) so that we can answer. It is encrypted so that only PolySwiss can read it. Everything sent is listed in the app under "Data sent to PolySwiss".</li>
     <li><strong>Once a day, anonymous app parameters</strong>: the operating system and its version, the app language, the installed language packages and how many identities are signed in. No names, accounts, texts or device model. Also listed under "Data sent to PolySwiss".</li>
   </ul>
