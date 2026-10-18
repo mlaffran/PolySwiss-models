@@ -18,7 +18,7 @@
 <body>
 <main>
   <h1>PolySwiss — privacy</h1>
-  <p class="muted">Test version (TestFlight). Last updated 18 October 2026.</p>
+  <p class="muted">Test version (TestFlight). Last updated 18 October 2026 (daily parameters).</p>
 
   <h2>Who</h2>
   <p>PolySwiss is developed by Marco Laffranchi, Switzerland. Contact: the feedback function in the app (Settings → Feedback to PolySwiss, with a pseudonym so that we can answer).</p>
@@ -34,7 +34,7 @@
   <ul>
     <li><strong>Messages to other people</strong> go through the PolySwiss server (matrix.polyswiss.app) with the Matrix account of your identity. Texts, files and the set-up of calls are <strong>end-to-end encrypted</strong> (AES-256-GCM) with a key that only your two phones can compute, made when you connected with the QR code (PS-Address). The server forwards them but cannot read them; it does see which accounts write to each other and when. PolySwiss does not send a message to someone you are not connected with. Calls are encrypted with the WebRTC standard (DTLS-SRTP).</li>
     <li><strong>Feedback</strong> you send to PolySwiss: anonymous, or with a pseudonym (a random key of this phone) so that we can answer. It is encrypted so that only PolySwiss can read it. Everything sent is listed in the app under "Data sent to PolySwiss".</li>
-    <li><strong>Once a day, anonymous app parameters</strong>: the operating system and its version, the app language, the installed language packages and how many identities are signed in. No names, accounts, texts or device model. Also listed under "Data sent to PolySwiss".</li>
+    <li><strong>Once a day, anonymous app parameters</strong>: the operating system and its version, the app language, the installed language packages, how many identities are signed in, and the subscription — the budget, the fee and its period (week, month or year), which features are on (Language analysis, Forum, ClassL, ClassE) and how many children are connected — with a two-digit checksum that lets PolySwiss check the values were not altered. No names, accounts, texts or device model. Also listed under "Data sent to PolySwiss".</li>
   </ul>
   <p>PolySwiss has no advertising, no tracking and no analytics service, and sells no data.</p>
 
