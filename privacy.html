@@ -18,7 +18,7 @@
 <body>
 <main>
   <h1>PolySwiss — privacy</h1>
-  <p class="muted">Test version (TestFlight). Last updated 22 October 2026 (notes with gifts, encrypted).</p>
+  <p class="muted">Test version (TestFlight). Last updated 22 October 2026 (notes with gifts, encrypted; forums and classrooms).</p>
 
   <h2>Who</h2>
   <p>PolySwiss is developed by Marco Laffranchi, Switzerland. Contact: the feedback function in the app (Main → Feedback to PolySwiss, with a pseudonym so that we can answer).</p>
@@ -34,6 +34,7 @@
   <h2>What leaves your phone</h2>
   <ul>
     <li><strong>Messages to other people</strong> go through the PolySwiss server (matrix.polyswiss.app, in Switzerland) with the Matrix account of your identity — a random, pseudonymous address. Texts, files, the set-up of calls, profile photos, the names you give each other and parent-child roles are <strong>end-to-end encrypted</strong> (AES-256-GCM) with a key that only your two phones can compute, made when you connected with the QR code. The server forwards them but cannot read them; it does see which accounts write to each other and when. PolySwiss does not send a message to someone you are not connected with. Calls are encrypted with the WebRTC standard (DTLS-SRTP).</li>
+    <li><strong>Forums and classrooms</strong> (identity 5 and identity 4): a <strong>private</strong> one is joined only with its QR invitation; its name, photo, the members' names and its messages are end-to-end encrypted with a key that only its members have, which the server never sees. A <strong>public</strong> one is listed for everybody and anyone can join, so its name, description and messages can also be read by the server, like a notice board.</li>
     <li><strong>No IP addresses kept.</strong> The PolySwiss server does not keep IP addresses: not in its database, its logs or its backups. During a call the relay server needs the addresses to connect the two phones, but writes them nowhere.</li>
     <li><strong>Budget given to others</strong> (Address, Parental link, Shop → Give budget), with its note if you write one, is signed and encrypted for the receiver; the server sees that a gift was sent, not the amount or the note.</li>
     <li><strong>Parent-child link</strong> (optional, Main → Parental link / Child link): parent and child connect with the QR code using a separate account for identity G. Both see the same entries — links, money given, the child's budget low or empty — never messages or calls. When the child becomes 18+, the links end and that account is deleted on the server.</li>
